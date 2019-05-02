@@ -1,0 +1,43 @@
+adam@dig:~/openhip-openhip-7ca0bd5421a5$ make
+make  all-recursive
+make[1]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5'
+Making all in src
+make[2]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+make[3]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+gcc -DHAVE_CONFIG_H -I. -I.. -I./include -I/usr/include/libxml2    -g -O2 -O3 -D_GNU_SOURCE -fno-strict-aliasing -Wall -DCONFIG_HIP -DSYSCONFDIR="\"/usr/local/etc/hip\"" -DLOCALSTATEDIR="\"/var\"" -MT hip-hip_sadb.o -MD -MP -MF .deps/hip-hip_sadb.Tpo -c -o hip-hip_sadb.o `test -f 'usermode/hip_sadb.c' || echo './'`usermode/hip_sadb.c
+usermode/hip_sadb.c: In function ‘hip_sadb_add’:
+usermode/hip_sadb.c:396:52: error: incompatible type for argument 2 of ‘DES_set_key_checked’
+       err = DES_set_key_checked((DES_cblock*)key1, entry->ks[0]);
+                                                    ^~~~~
+In file included from ./include/hip/hip_sadb.h:54:0,
+                 from usermode/hip_sadb.c:58:
+/usr/include/openssl/des.h:156:5: note: expected ‘DES_key_schedule * {aka struct DES_ks *}’ but argument is of type ‘DES_key_schedule {aka struct DES_ks}’
+ int DES_set_key_checked(const_DES_cblock *key, DES_key_schedule *schedule);
+     ^~~~~~~~~~~~~~~~~~~
+usermode/hip_sadb.c:397:53: error: incompatible type for argument 2 of ‘DES_set_key_checked’
+       err += DES_set_key_checked((DES_cblock*)key2, entry->ks[1]);
+                                                     ^~~~~
+In file included from ./include/hip/hip_sadb.h:54:0,
+                 from usermode/hip_sadb.c:58:
+/usr/include/openssl/des.h:156:5: note: expected ‘DES_key_schedule * {aka struct DES_ks *}’ but argument is of type ‘DES_key_schedule {aka struct DES_ks}’
+ int DES_set_key_checked(const_DES_cblock *key, DES_key_schedule *schedule);
+     ^~~~~~~~~~~~~~~~~~~
+usermode/hip_sadb.c:398:53: error: incompatible type for argument 2 of ‘DES_set_key_checked’
+       err += DES_set_key_checked((DES_cblock*)key3, entry->ks[2]);
+                                                     ^~~~~
+In file included from ./include/hip/hip_sadb.h:54:0,
+                 from usermode/hip_sadb.c:58:
+/usr/include/openssl/des.h:156:5: note: expected ‘DES_key_schedule * {aka struct DES_ks *}’ but argument is of type ‘DES_key_schedule {aka struct DES_ks}’
+ int DES_set_key_checked(const_DES_cblock *key, DES_key_schedule *schedule);
+     ^~~~~~~~~~~~~~~~~~~
+Makefile:1019: recipe for target 'hip-hip_sadb.o' failed
+make[3]: *** [hip-hip_sadb.o] Error 1
+make[3]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+Makefile:1151: recipe for target 'all-recursive' failed
+make[2]: *** [all-recursive] Error 1
+make[2]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+Makefile:422: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5'
+Makefile:357: recipe for target 'all' failed
+make: *** [all] Error 2

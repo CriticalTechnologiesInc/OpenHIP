@@ -1,0 +1,24 @@
+adam@dig:~/openhip-openhip-7ca0bd5421a5$ make
+make  all-recursive
+make[1]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5'
+Making all in src
+make[2]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+make[3]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+gcc -DHAVE_CONFIG_H -I. -I.. -I./include -I/usr/include/libxml2    -g -O2 -O3 -Werror -D_GNU_SOURCE -fno-strict-aliasing -Wall -DCONFIG_HIP -DSYSCONFDIR="\"/usr/local/etc/hip\"" -DLOCALSTATEDIR="\"/var\"" -MT hip-hip_esp.o -MD -MP -MF .deps/hip-hip_esp.Tpo -c -o hip-hip_esp.o `test -f 'usermode/hip_esp.c' || echo './'`usermode/hip_esp.c
+In file included from usermode/hip_esp.c:70:0:
+usermode/hip_esp.c: In function ‘send_icmp’:
+./include/win32/checksum.h:75:14: error: ‘*((void *)&icmp_parameter_problem+26)’ is used uninitialized in this function [-Werror=uninitialized]
+       sum += *p++;
+              ^~~~
+cc1: all warnings being treated as errors
+Makefile:1005: recipe for target 'hip-hip_esp.o' failed
+make[3]: *** [hip-hip_esp.o] Error 1
+make[3]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+Makefile:1151: recipe for target 'all-recursive' failed
+make[2]: *** [all-recursive] Error 1
+make[2]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+Makefile:422: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5'
+Makefile:357: recipe for target 'all' failed
+make: *** [all] Error 2

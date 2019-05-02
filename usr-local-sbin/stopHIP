@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# get HIP pids
+psOut=$(ps ax | grep hip)
+
+# break the output into array
+words=()
+for word in $psOut; do
+	# echo $word
+	words+=( $word )
+done
+
+# grab the PID
+hipPID=${words[0]}
+
+# kill HIP
+sudo kill -9 $hipPID
+sudo rm /var/run/hip.pid

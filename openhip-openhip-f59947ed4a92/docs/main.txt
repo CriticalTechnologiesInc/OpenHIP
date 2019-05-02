@@ -1,8 +1,0 @@
-/**
- * \mainpage Doxygen support for OpenHIP
- *
- * The <a href=http://www.openhip.org/wiki/index.php?title=Main_Page>OpenHIP
- * wiki</a> is presently the source of most of our project documentation.  This
- * Doxygen directory contains source code cross reference of the raw
- * (not doxygen-commented) APIs and data structures in the hip module only.
- */

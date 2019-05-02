@@ -1,4 +1,0 @@
-128c128
-<   DES_key_schedule ks[3];               /* 3-DES keys */
----
->   des_key_schedule ks[3];               /* 3-DES keys */

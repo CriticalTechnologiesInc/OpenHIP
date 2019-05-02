@@ -1,0 +1,26 @@
+adam@dig:~/openhip-openhip-7ca0bd5421a5$ make
+make  all-recursive
+make[1]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5'
+Making all in src
+make[2]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+make[3]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+gcc -DHAVE_CONFIG_H -I. -I.. -I./include -I/usr/include/libxml2    -g -O2 -O3 -Werror -D_GNU_SOURCE -fno-strict-aliasing -Wall -DCONFIG_HIP -DSYSCONFDIR="\"/usr/local/etc/hip\"" -DLOCALSTATEDIR="\"/var\"" -MT hip-hip_linux_umh.o -MD -MP -MF .deps/hip-hip_linux_umh.Tpo -c -o hip-hip_linux_umh.o `test -f 'linux/hip_linux_umh.c' || echo './'`linux/hip_linux_umh.c
+mv -f .deps/hip-hip_linux_umh.Tpo .deps/hip-hip_linux_umh.Po
+gcc -DHAVE_CONFIG_H -I. -I.. -I./include -I/usr/include/libxml2    -g -O2 -O3 -Werror -D_GNU_SOURCE -fno-strict-aliasing -Wall -DCONFIG_HIP -DSYSCONFDIR="\"/usr/local/etc/hip\"" -DLOCALSTATEDIR="\"/var\"" -MT hip-hip_addr.o -MD -MP -MF .deps/hip-hip_addr.Tpo -c -o hip-hip_addr.o `test -f 'protocol/hip_addr.c' || echo './'`protocol/hip_addr.c
+mv -f .deps/hip-hip_addr.Tpo .deps/hip-hip_addr.Po
+gcc -DHAVE_CONFIG_H -I. -I.. -I./include -I/usr/include/libxml2    -g -O2 -O3 -Werror -D_GNU_SOURCE -fno-strict-aliasing -Wall -DCONFIG_HIP -DSYSCONFDIR="\"/usr/local/etc/hip\"" -DLOCALSTATEDIR="\"/var\"" -MT hip-hip_cache.o -MD -MP -MF .deps/hip-hip_cache.Tpo -c -o hip-hip_cache.o `test -f 'protocol/hip_cache.c' || echo './'`protocol/hip_cache.c
+protocol/hip_cache.c: In function ‘new_dh_cache_entry’:
+protocol/hip_cache.c:415:7: error: dereferencing pointer to incomplete type ‘DH {aka struct dh_st}’
+     dh->g = BN_new();
+       ^~
+Makefile:809: recipe for target 'hip-hip_cache.o' failed
+make[3]: *** [hip-hip_cache.o] Error 1
+make[3]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+Makefile:1151: recipe for target 'all-recursive' failed
+make[2]: *** [all-recursive] Error 1
+make[2]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+Makefile:422: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5'
+Makefile:357: recipe for target 'all' failed
+make: *** [all] Error 2

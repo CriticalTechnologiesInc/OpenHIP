@@ -1,0 +1,18 @@
+2074c2074
+<       DES_ede3_cbc_encrypt(&in[hdr_len],
+---
+>       des_ede3_cbc_encrypt(&in[hdr_len],
+2076,2077c2076,2077
+<                            &entry->ks[0], &entry->ks[1], &entry->ks[2],
+<                            (DES_cblock*)cbc_iv, DES_ENCRYPT);
+---
+>                            entry->ks[0], entry->ks[1], entry->ks[2],
+>                            (des_cblock*)cbc_iv, DES_ENCRYPT);
+2472,2474c2472,2474
+<       DES_ede3_cbc_encrypt(&esp->enc_data[iv_len], &out[*offset],elen,
+<                            &entry->ks[0], &entry->ks[1], &entry->ks[2],
+<                            (DES_cblock*)cbc_iv, DES_DECRYPT);
+---
+>       des_ede3_cbc_encrypt(&esp->enc_data[iv_len], &out[*offset],elen,
+>                            entry->ks[0], entry->ks[1], entry->ks[2],
+>                            (des_cblock*)cbc_iv, DES_DECRYPT);
