@@ -1,0 +1,42 @@
+adam@dig:~/openhip-openhip-7ca0bd5421a5$ make
+make  all-recursive
+make[1]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5'
+Making all in src
+make[2]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+make[3]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+gcc -DHAVE_CONFIG_H -I. -I.. -I./include -I/usr/include/libxml2    -g -O2 -O3 -Werror -D_GNU_SOURCE -fno-strict-aliasing -Wall -DCONFIG_HIP -DSYSCONFDIR="\"/usr/local/etc/hip\"" -DLOCALSTATEDIR="\"/var\"" -MT hip-hip_input.o -MD -MP -MF .deps/hip-hip_input.Tpo -c -o hip-hip_input.o `test -f 'protocol/hip_input.c' || echo './'`protocol/hip_input.c
+mv -f .deps/hip-hip_input.Tpo .deps/hip-hip_input.Po
+gcc -DHAVE_CONFIG_H -I. -I.. -I./include -I/usr/include/libxml2    -g -O2 -O3 -Werror -D_GNU_SOURCE -fno-strict-aliasing -Wall -DCONFIG_HIP -DSYSCONFDIR="\"/usr/local/etc/hip\"" -DLOCALSTATEDIR="\"/var\"" -MT hip-hip_ipsec.o -MD -MP -MF .deps/hip-hip_ipsec.Tpo -c -o hip-hip_ipsec.o `test -f 'protocol/hip_ipsec.c' || echo './'`protocol/hip_ipsec.c
+mv -f .deps/hip-hip_ipsec.Tpo .deps/hip-hip_ipsec.Po
+gcc -DHAVE_CONFIG_H -I. -I.. -I./include -I/usr/include/libxml2    -g -O2 -O3 -Werror -D_GNU_SOURCE -fno-strict-aliasing -Wall -DCONFIG_HIP -DSYSCONFDIR="\"/usr/local/etc/hip\"" -DLOCALSTATEDIR="\"/var\"" -MT hip-hip_keymat.o -MD -MP -MF .deps/hip-hip_keymat.Tpo -c -o hip-hip_keymat.o `test -f 'protocol/hip_keymat.c' || echo './'`protocol/hip_keymat.c
+mv -f .deps/hip-hip_keymat.Tpo .deps/hip-hip_keymat.Po
+gcc -DHAVE_CONFIG_H -I. -I.. -I./include -I/usr/include/libxml2    -g -O2 -O3 -Werror -D_GNU_SOURCE -fno-strict-aliasing -Wall -DCONFIG_HIP -DSYSCONFDIR="\"/usr/local/etc/hip\"" -DLOCALSTATEDIR="\"/var\"" -MT hip-hip_main.o -MD -MP -MF .deps/hip-hip_main.Tpo -c -o hip-hip_main.o `test -f 'protocol/hip_main.c' || echo './'`protocol/hip_main.c
+mv -f .deps/hip-hip_main.Tpo .deps/hip-hip_main.Po
+gcc -DHAVE_CONFIG_H -I. -I.. -I./include -I/usr/include/libxml2    -g -O2 -O3 -Werror -D_GNU_SOURCE -fno-strict-aliasing -Wall -DCONFIG_HIP -DSYSCONFDIR="\"/usr/local/etc/hip\"" -DLOCALSTATEDIR="\"/var\"" -MT hip-hip_output.o -MD -MP -MF .deps/hip-hip_output.Tpo -c -o hip-hip_output.o `test -f 'protocol/hip_output.c' || echo './'`protocol/hip_output.c
+In file included from protocol/hip_output.c:42:0:
+protocol/hip_output.c: In function ‘build_tlv_hostid_len’:
+protocol/hip_output.c:2099:62: error: dereferencing pointer to incomplete type ‘RSA {aka struct rsa_st}’
+       hi_len = sizeof(tlv_host_id) + 1 + BN_num_bytes(hi->rsa->e)
+                                                              ^
+protocol/hip_output.c: In function ‘build_tlv_hostid’:
+protocol/hip_output.c:2162:33: error: dereferencing pointer to incomplete type ‘DSA {aka struct dsa_st}’
+       len += bn2bin_safe(hi->dsa->q, &data[len], DSA_PRIV);
+                                 ^~
+protocol/hip_output.c: In function ‘build_tlv_signature’:
+protocol/hip_output.c:2407:26: error: dereferencing pointer to incomplete type ‘DSA_SIG {aka struct DSA_SIG_st}’
+       bn2bin_safe(dsa_sig->r, &sig->signature[1], 20);
+                          ^~
+protocol/hip_output.c:2438:30: error: dereferencing pointer to incomplete type ‘ECDSA_SIG {aka struct ECDSA_SIG_st}’
+         bn2bin_safe(ecdsa_sig->r, &sig->signature[0], curve_param_size);
+                              ^~
+Makefile:907: recipe for target 'hip-hip_output.o' failed
+make[3]: *** [hip-hip_output.o] Error 1
+make[3]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+Makefile:1151: recipe for target 'all-recursive' failed
+make[2]: *** [all-recursive] Error 1
+make[2]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+Makefile:422: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5'
+Makefile:357: recipe for target 'all' failed
+make: *** [all] Error 2

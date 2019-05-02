@@ -1,0 +1,47 @@
+REPORT
+
+OpenSSL issues.
+
+FLOW OF SYSTEM:
+
+openssl is version 1.1.0g
+
+hip_xml.c:630 (read_identities_file)
+- Check for and open XML file
+- Loop for nodes in parsed XML
+
+hip_xml.c:658 create_new_hi_node()
+	hip_util.c:247 (create_new_hi_node)
+	- this seems normal, allocate memory for stuff...
+
+hip_xml.c:659 parse_xml_attributes()
+	hip_xml.c:142 (parse_xml_attributes)
+	- Checks if 'hi' NULL
+	- Fills hi struct
+
+hip_xml.c:666 RSA_new()
+	openssl/rsa/rsa_lib.c:18 (RSA_new)
+		openssl/rsa/rsa_lib.c:20 RSA_new_method()
+			openssl/rsa/rsa_lib.c:48 (RSA_new_method)
+			- returns a memory address that is allocated with some data prepopulated or NULL
+- We added a check for NULL -- passes
+
+hip_xml.c:683 parse_xml_hostid()
+	hip_xml.c:244 (parse_xml_hostid)
+ 	- BN_hex2bn needed a change due to BIGNUM and abstraction
+ 		BIGNUM *xxx;
+ 		BN_hex2bn(&xxx, data);
+ 		RSA_set0_*(hi->rsa, xxx, NULL, ...); 
+		- SHOULD populate the RSA/DSA struct with data
+		- RSA_set0_*() silently seems to fail to set anything - keeping things as NULL in struct?
+
+
+BN_hex2bn() : openssl/crypto/bn/bn_print.c : 124
+RSA_set0_*() : openssl/crypto/rsa/rsa_lib.c : 192 (factors), 166 (key), 213 (crt_params)
+
+
+Issue is that OpenSSL requires functions to access member variables of various structs (such as RSA, DSA and DH). 
+Also OpenSSL doesn't check for NULL consistently and can end up attempting to work with NULL pointers
+They are using pointers of data to fill various structs, NOT copying that data into them
+When structs are created they are NULLed out on OpenSSL, but some members do NOT have accessor functions to change them from NULL. So when OpenHIP attempts to use a variable that should not be NULL OpenSSL breaks and segfaults!
+

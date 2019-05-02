@@ -1,0 +1,14 @@
+393,398c393,398
+<       DES_set_odd_parity((DES_cblock*)key1);
+<       DES_set_odd_parity((DES_cblock*)key2);
+<       DES_set_odd_parity((DES_cblock*)key3);
+<       err = DES_set_key_checked((DES_cblock*)key1, &entry->ks[0]);
+<       err += DES_set_key_checked((DES_cblock*)key2, &entry->ks[1]);
+<       err += DES_set_key_checked((DES_cblock*)key3, &entry->ks[2]);
+---
+>       des_set_odd_parity((des_cblock*)key1);
+>       des_set_odd_parity((des_cblock*)key2);
+>       des_set_odd_parity((des_cblock*)key3);
+>       err = des_set_key_checked((des_cblock*)key1, entry->ks[0]);
+>       err += des_set_key_checked((des_cblock*)key2, entry->ks[1]);
+>       err += des_set_key_checked((des_cblock*)key3, entry->ks[2]);

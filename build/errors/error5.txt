@@ -1,0 +1,33 @@
+adam@dig:~/openhip-openhip-7ca0bd5421a5$ make
+make  all-recursive
+make[1]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5'
+Making all in src
+make[2]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+make[3]: Entering directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+gcc -DHAVE_CONFIG_H -I. -I.. -I./include -I/usr/include/libxml2   -DHITGEN  -g -O2 -O3 -Werror -D_GNU_SOURCE -fno-strict-aliasing -Wall -DCONFIG_HIP -DSYSCONFDIR="\"/usr/local/etc/hip\"" -DLOCALSTATEDIR="\"/var\"" -MT hitgen-hitgen.o -MD -MP -MF .deps/hitgen-hitgen.Tpo -c -o hitgen-hitgen.o `test -f 'util/hitgen.c' || echo './'`util/hitgen.c
+mv -f .deps/hitgen-hitgen.Tpo .deps/hitgen-hitgen.Po
+gcc -DHAVE_CONFIG_H -I. -I.. -I./include -I/usr/include/libxml2   -DHITGEN  -g -O2 -O3 -Werror -D_GNU_SOURCE -fno-strict-aliasing -Wall -DCONFIG_HIP -DSYSCONFDIR="\"/usr/local/etc/hip\"" -DLOCALSTATEDIR="\"/var\"" -MT hitgen-hip_util.o -MD -MP -MF .deps/hitgen-hip_util.Tpo -c -o hitgen-hip_util.o `test -f 'util/hip_util.c' || echo './'`util/hip_util.c
+util/hip_util.c: In function ‘key_data_to_hi’:
+util/hip_util.c:532:14: error: dereferencing pointer to incomplete type ‘DSA {aka struct dsa_st}’
+       hi->dsa->q = BN_bin2bn(&data[offset], DSA_PRIV, 0);
+              ^~
+util/hip_util.c:549:14: error: dereferencing pointer to incomplete type ‘RSA {aka struct rsa_st}’
+       hi->rsa->e = BN_bin2bn(&data[offset], e_len, 0);
+              ^~
+util/hip_util.c: In function ‘init_crypto’:
+util/hip_util.c:3158:3: error: implicit declaration of function ‘CRYPTO_malloc_init’; did you mean ‘CRYPTO_malloc’? [-Werror=implicit-function-declaration]
+   CRYPTO_malloc_init();
+   ^~~~~~~~~~~~~~~~~~
+   CRYPTO_malloc
+cc1: all warnings being treated as errors
+Makefile:1117: recipe for target 'hitgen-hip_util.o' failed
+make[3]: *** [hitgen-hip_util.o] Error 1
+make[3]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+Makefile:1151: recipe for target 'all-recursive' failed
+make[2]: *** [all-recursive] Error 1
+make[2]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5/src'
+Makefile:422: recipe for target 'all-recursive' failed
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory '/home/adam/openhip-openhip-7ca0bd5421a5'
+Makefile:357: recipe for target 'all' failed
+make: *** [all] Error 2

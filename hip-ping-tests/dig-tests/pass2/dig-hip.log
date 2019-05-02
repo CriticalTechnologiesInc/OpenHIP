@@ -1,0 +1,126 @@
+OpenHIP v0.9 HIP daemon
+init_tap()
+hip_status() thread started...
+Using TAP device hip0.
+Initialized TAP device.
+Sat Apr 20 14:35:23 2019 (4) hipd v0.9 (1124) started.
+Setting options: daemon = no  debug level = 1  permissive = no
+     no_retransmit = no  opportunistic = no any = no rvs = no mr = no
+tunreader() thread started (3)...
+Using configuration file:	/usr/local/etc/hip/hip.conf
+Using my host IDs file:		/usr/local/etc/hip/my_host_identities.xml
+hip_esp_input() thread started...
+My host identities:
+ HI: dig-1024 HIT: 2001:1e:4aef:5a38:f397:8f52:b607:bad5
+	LSI: 1.7.186.213 
+Using known host IDs file:	/usr/local/etc/hip/known_host_identities.xml
+Known peer host identities:
+ HIT: jokey-1024  2001:11:9856:d864:d13d:411:14:22ce
+	LSI: 1.20.34.206 [192.168.100.3 ]
+ HIT: adam-desktop-1024  2001:1b:574c:56ab:6498:6726:a858:35ea
+	LSI: 1.88.53.234 [192.168.4.89 ]
+Local addresses: (1)127.0.0.1 (4)192.168.100.2 (1)::1 (4)fe80::20d:b9ff:fe42:73b6 
+192.168.100.2 selected as the preferred address (first in list).
+Initializing R1 cache entries for identity dig-1024 (8 slots).
+Adding address 1.7.186.213 to interface 7.
+Adding address 2001:1e:4aef:5a38:f397:8f52:b607:bad5 to interface 7.
+hip_esp_output() thread started...
+Sat Apr 20 14:35:24 2019 (1) Listening for HIP control packets...
+Sat Apr 20 14:35:25 2019  HIP threads initialization completed.
+Sat Apr 20 14:35:43 2019 (1) Received HIP_I1 packet from 192.168.100.3 on udp socket length 72
+Using premade R1 from dig-1024 cache slot 5.
+Sat Apr 20 14:35:43 2019 (1) Sending HIP_R1 packet (600 bytes)...
+Sat Apr 20 14:35:43 2019 (1) Sending HIP packet on UDP socket
+Sat Apr 20 14:35:43 2019 (1) Sent R1 (612 bytes)
+Sat Apr 20 14:35:43 2019 (1) Received HIP_I2 packet from 192.168.100.3 on udp socket length 688
+ I2 TLV type = 65 length = 12 
+ I2 TLV type = 128 length = 12 
+R1 counter 11 (11) acceptable.
+ I2 TLV type = 321 length = 20 
+Got the I2 cookie: (k=10 lifetime=39 (128 seconds) opaque=0 I=0x70b95a357c1f8a9b)
+solution: 0x568d02bade1f4e7d
+Verifying cookie to 10 bits
+Cookie verified ok.
+ I2 TLV type = 513 length = 195 
+Got DH public value of len 192: 0x ae952707 9950c935 2e02a603 68403176
+9ff811e8 fc7343ea 99617d42 244cabcf
+05942d0c 92571fd6 7e3a5071 b6ae2d9f
+b6a31c3d 90cf7665 dd7073dc 72c7e7ee
+3f58e83d 2214fdc0 db2c16d3 22b6bfdb
+174014d2 e1426335 d1edbaf4 cc2ded2d
+79e14405 e67dc27a ad004bf0 2834b175
+c45fe6d5 a2898791 633ab578 7f1e8375
+626e3c6f a10b32c5 10d2b5da 2a8e6520
+942603f7 624486da ce3a9237 b2710f2d
+92d320e8 f7d25f5c 68f3da86 9b57d66a
+21ef0281 4d9afa28 cb940dbf a00eb32b
+************
+DH secret key set to:
+0x b1591df4 ea332da0 311618bb 572d511b
+2d2c7f63 ad68f816 efb6a653 bf4cc92a
+d53e57f6 2e094072 5db3c17c 7accfe92
+8c8ce52e 3fd8dfd2 055954a5 2472247e
+bbc7c160 b8c9d68c 9d41dd37 1e13587a
+dd550c03 158de20a 3e79f062 2980b272
+406fabda ed567487 b18182c3 5b5e0e03
+05027e7a 937b6555 21fc2cdd 80b035e8
+e8b78424 5fa89f53 11338f94 22e24354
+233cdc5f 2b82d398 2c96c092 0e312d7b
+937de1ff c38277c5 68d275ae 84484a27
+73358ea6 4dfc24e1 d1037dd6 41d9f22f
+***********
+ I2 TLV type = 577 length = 2 
+Using HIP transform of 1.
+Drawing new HIP encryption/integrity keys:
+Key 0 (1,16) keymat[  0] 0x 44c6aed3 18f2e6c1 1fcf6689 a62d596e
+Key 1 (1,20) keymat[ 16] 0x 1f3893c8 96890d90 b7dbd552 0b14e8a8 777106f5
+Key 2 (1,16) keymat[ 36] 0x 01285157 fdb53b25 cdb6ef65 deb1d909
+Key 3 (1,20) keymat[ 52] 0x a3da111c b219f64a 22da94a2 a1da0e64 e5d43fbb
+ I2 TLV type = 641 length = 180 
+AES decryption key: 0x 01285157 fdb53b25 cdb6ef65 deb1d909
+Decrypting 160 bytes using AES.
+Found RSA HI with public modulus: 0x d0950d51 c3f69360 ea4bfeb7 e2e9bc8e
+5c70e2e4 b6d6a42b 3858bbc8 74fffc5e
+0528ae6d c5d622d5 3aee20d8 e9c58e26
+9659228b 21e4449d b51199c5 b5a86dc9
+af5e19cc 89cb2b73 885206a8 bcb2d2f7
+259a05e7 be9cf8a1 21551774 2036e4bd
+c1ec4cc6 df411b79 baf78701 3d7f0d5b
+ca07500b d5d2eb51 0472b707 f08b32f3
+HI has name: jokey-1024 length: 10
+HI in I2 validates the sender's HIT.
+ I2 TLV type = 4095 length = 4 
+ I2 TLV type = 61505 length = 20 
+HMAC verify over 496 bytes. hdr length=61 
+HMAC verified OK.
+ I2 TLV type = 61697 length = 129 
+SHA1:  3767fc97 7eb6ceb0 5043819b 29abb24d 37090a09
+RSA HIP signature is good.
+Adding address 192.168.100.2 to association.
+HMAC computed over 208 bytes hdr length=25
+ SHA1:  e5b39f64 329d0cec 929f794e b3582080 49aeefb1
+Signature:  a83d72b0 6f469427 3d1fd027 b1bc146c
+1e709196 00c1816e 1db04d31 baa45ac6
+476ec5d3 31010898 4f3a69f8 ebfd487b
+248873bb a63697d2 843d591d 0a717b54
+c6afddfc 6d592b6f 04c71451 01b7747a
+ff8269b8 9ca62fa0 4ffb63a0 e01943d0
+2ed575ec 969c3fb6 2b6be922 e871dc8d
+c0d8713e ca93e429 be7f6642 29dfcc3a
+Sat Apr 20 14:35:43 2019 (1) Sending HIP_R2 packet (216 bytes)...
+Sat Apr 20 14:35:43 2019 (1) Sending HIP packet on UDP socket
+Using HIP transform of 1 ESP transform of 1.
+Drawing new ESP keys from keymat index 72:
+Key 4 (1,16) keymat[ 72] 0x 2b54abbf 82531bc7 3048e340 2db0698f
+Key 5 (1,20) keymat[ 88] 0x 338c3007 813614aa 961a2a67 da6d5a4c df718c9d
+Key 6 (1,16) keymat[108] 0x 9073ee40 21078cb2 2ca7c105 72118ee9
+Key 7 (1,20) keymat[124] 0x ac016a5d 6f2654a8 1c2d1f39 3364cfef 48bcacdb
+Sent R2 (228 bytes)
+---------- HIP exchange complete. ----------
+Sat Apr 20 14:35:43 2019 (1) Adding security association:
+	src ip = 192.168.100.2 dst ip = 192.168.100.3
+	SPIs in = 0xfc5dcfa out = 0x58434dd
+Sat Apr 20 14:35:43 2019 (4) Base exchange completed from 
+	2001:1e:4aef:5a38:f397:8f52:b607:bad5 / 192.168.100.2 / 1.7.186.213 to 
+	2001:11:9856:d864:d13d:411:14:22ce / 192.168.100.3 / 1.20.34.206
+Sat Apr 20 14:35:44 2019 (1) HIP association 0 moved from R2_SENT=>ESTABLISHED due to incoming ESP data.

@@ -1,0 +1,124 @@
+
+JIM FUCKERY
+
+OpenHip v2 branch
+on Ubuntu 14.04.3 LTS
+with OpenSSL 1.0.1f
+add to env. variable CFLAGS="-std=c99"
+
+OpenHIP v2 branch
+on Ubuntu ???
+with OpenSSL ???
+comment out colors for automake
+
+
+define static ld flag before configure
+but fails when it attempts
+
+
+DIG BOX
+
+ADD TO /etc/apt/sources.list:
+
+deb http://httpredir.debian.org/debian jessie main contrib non-free
+deb-src http://httpredir.debian.org/debian jessie main contrib non-free
+
+deb http://security.debian.org/ jessie/updates main contrib non-free
+deb-src http://security.debian.org/ jessie/updates main contrib non-free
+
+sudp apt install debian-keyring debian-archive-keyring
+
+wget -O - https://ftp-master.debian.org/keys/archive-key-8.asc | apt-key add -
+sudo -s
+wget -O - https://ftp-master.debian.org/keys/archive-key-8-security.asc | apt-key add -
+
+sudo apt update
+
+=============================================
+https://stackoverflow.com/questions/20147707/compiling-the-openssl-binary-statically
+
+I did this - hooray!
+=============================================
+
+JIM GOT IT TO DO THE STATIC THINGY
+MOVED THEM INTO MY BOX!
+
+=============================================
+what jim did
+ON ASSET #018
+with Ubuntu 14.04.3 LTS
+with OpenSSL 1.0.1f
+
+0) unzip openhip v2 branch zip file
+1) export CFLAGS="-std=c99"
+2) ./bootstrap.sh
+3) ./configure --prefix=/usr/local
+4) edit src/Makefile
+4.1) added to CFLAGS "-static"
+4.2) added to LDFLAGS "-static"
+4.3) added to LIBS "-ldl" to the end 
+5) make
+6) ldd src/hip
+6.1) should have no dynamic links!
+7) sudo make install
+8) cd /usr/local/sbin
+9) sudo ./hitgen
+10) sudo ./hitgen -conf
+11) sudo ./hitgen -publish
+12) sudo ./hip -v
+13) to stop Ctrl+Z, kill -9 the PID of HIP
+14) sudo rm /var/log/hip.pid
+======================================================
+Moved the three binaries (hitgen, hipstatus and hip)
+to the newer box:
+
+Asset #023
+with Ubuntu 18.04 LTS
+with OpenSSL 1.1.0g
+
+1) move hitgen, hipstatus and hip to /usr/local/sbin
+2) sudo ./hitgen
+3) sudo ./hitgen -conf
+4) sudo ./hitgen -publish
+5) sudo ./hip -v
+6) to stop Ctrl+Z, kill -9 the PID of HIP
+7) sudo rm /var/log/hip.pid
+==============================================
+
+build hip0.9
+
+1) export CFLAGS="-std=c99"
+2) ./bootstrap.sh
+
+-------------------
+autoheader not found aborting
+
+sudo apt install automake
+-------------------
+comment out color-tests 
+
+src/Makefile.am : 30
+--------------------
+
+3) ./configure --prefix=/usr/local
+
+----------------------
+unknown token libxml2
+
+????????
+
+Jim jumped to a different box here cause it wasnt working on his!
+
+----------------------
+
+make
+
+---------------------------
+sudo apt install libzlma
+ link using -llzma on LDADD line (or LIBS)
+
+add to LIBS line: -ldl -llzma
+
+removed the -Werror line in makefile
+---------------------------
+

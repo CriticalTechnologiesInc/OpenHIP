@@ -1,0 +1,13 @@
+File Descriptors:
+
+<host>-[hip,enp]-ping.[dump,log]
+-- test with host sending pings
+
+<host>-[hip,enp].[dump,log]
+-- test with host recieving pings
+
+PASS1 tests seem to be short. So I ran the test again (PASS2)
+waiting for 30 seconds after the pings completed before killing the test.
+
+Oddly there are still packets apparently missing/broken at 
+the end of the test but I have enough data.

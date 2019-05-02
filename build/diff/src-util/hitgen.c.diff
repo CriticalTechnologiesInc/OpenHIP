@@ -1,0 +1,121 @@
+97,159d96
+< DSA *my_DSA_generate_parameters(int bits,
+<                              unsigned char *seed_in, int seed_len,
+<                              int *counter_ret, unsigned long *h_ret,
+<                              void (*callback) (int, int, void *),
+<                              void *cb_arg)
+< {
+<     BN_GENCB *cb;
+<     DSA *ret;
+< 
+<     if ((ret = DSA_new()) == NULL)
+<         return NULL;
+<     cb = BN_GENCB_new();
+<     if (cb == NULL)
+<         goto err;
+< 
+<     BN_GENCB_set_old(cb, callback, cb_arg);
+< 
+<     if (DSA_generate_parameters_ex(ret, bits, seed_in, seed_len,
+<                                    counter_ret, h_ret, cb)) {
+<         BN_GENCB_free(cb);
+<         return ret;
+<     }
+<     BN_GENCB_free(cb);
+< err:
+<     DSA_free(ret);
+<     return NULL;
+< }
+< 
+< RSA *my_RSA_generate_key(int bits, unsigned long e_value,
+<                       void (*callback) (int, int, void *), void *cb_arg)
+< {
+<     int i;
+<     BN_GENCB *cb = BN_GENCB_new();
+<     RSA *rsa = RSA_new();
+<     BIGNUM *e = BN_new();
+< 
+<     if (cb == NULL || rsa == NULL || e == NULL)
+<         goto err;
+< 
+<     /*
+<      * The problem is when building with 8, 16, or 32 BN_ULONG, unsigned long
+<      * can be larger
+<      */
+<     for (i = 0; i < (int)sizeof(unsigned long) * 8; i++) {
+<         if (e_value & (1UL << i))
+<             if (BN_set_bit(e, i) == 0)
+<                 goto err;
+<     }
+< 
+<     BN_GENCB_set_old(cb, callback, cb_arg);
+< 
+<     if (RSA_generate_key_ex(rsa, bits, e, cb)) {
+<         BN_free(e);
+<         BN_GENCB_free(cb);
+<         return rsa;
+<     }
+<  err:
+<     BN_free(e);
+<     RSA_free(rsa);
+<     BN_GENCB_free(cb);
+<     return 0;
+< }
+< 
+201c138
+<       dsa = my_DSA_generate_parameters(opts->bitsize, seed, sizeof(seed),
+---
+>       dsa = DSA_generate_parameters(opts->bitsize, seed, sizeof(seed),
+219c156
+<       rsa = my_RSA_generate_key(opts->bitsize, e, cb, stdout);
+---
+>       rsa = RSA_generate_key(opts->bitsize, e, cb, stdout);
+272,274d208
+< 
+<   const BIGNUM *dsa_p, *dsa_q, *dsa_g, *dsa_pub_key, *dsa_priv_key;
+<   const BIGNUM *rsa_n, *rsa_e, *rsa_d, *rsa_p, *rsa_q, *rsa_dmp1, *rsa_dmq1, *rsa_iqmp;
+278,282c212,214
+<       DSA_get0_pqg(dsa, &dsa_p, &dsa_q, &dsa_g);
+<       xmlNewChild(hi, NULL, BAD_CAST "P", BAD_CAST BN_bn2hex(dsa_p));
+<       xmlNewChild(hi, NULL, BAD_CAST "Q", BAD_CAST BN_bn2hex(dsa_q));
+<       xmlNewChild(hi, NULL, BAD_CAST "G", BAD_CAST BN_bn2hex(dsa_g));
+<       DSA_get0_key(dsa, &dsa_pub_key, &dsa_priv_key);
+---
+>       xmlNewChild(hi, NULL, BAD_CAST "P", BAD_CAST BN_bn2hex(dsa->p));
+>       xmlNewChild(hi, NULL, BAD_CAST "Q", BAD_CAST BN_bn2hex(dsa->q));
+>       xmlNewChild(hi, NULL, BAD_CAST "G", BAD_CAST BN_bn2hex(dsa->g));
+284c216
+<                   BAD_CAST BN_bn2hex(dsa_pub_key));
+---
+>                   BAD_CAST BN_bn2hex(dsa->pub_key));
+286c218
+<                   BAD_CAST BN_bn2hex(dsa_priv_key));
+---
+>                   BAD_CAST BN_bn2hex(dsa->priv_key));
+289,296c221,225
+<       RSA_get0_key(rsa, &rsa_n, &rsa_e, &rsa_d);
+<       xmlNewChild(hi, NULL, BAD_CAST "N", BAD_CAST BN_bn2hex(rsa_n));
+<       xmlNewChild(hi, NULL, BAD_CAST "E", BAD_CAST BN_bn2hex(rsa_e));
+<       xmlNewChild(hi, NULL, BAD_CAST "D", BAD_CAST BN_bn2hex(rsa_d));
+<       RSA_get0_factors(rsa, &rsa_p, &rsa_q);
+<       xmlNewChild(hi, NULL, BAD_CAST "P", BAD_CAST BN_bn2hex(rsa_p));
+<       xmlNewChild(hi, NULL, BAD_CAST "Q", BAD_CAST BN_bn2hex(rsa_q));
+<       RSA_get0_crt_params(rsa, &rsa_dmp1, &rsa_dmq1, &rsa_iqmp);
+---
+>       xmlNewChild(hi, NULL, BAD_CAST "N", BAD_CAST BN_bn2hex(rsa->n));
+>       xmlNewChild(hi, NULL, BAD_CAST "E", BAD_CAST BN_bn2hex(rsa->e));
+>       xmlNewChild(hi, NULL, BAD_CAST "D", BAD_CAST BN_bn2hex(rsa->d));
+>       xmlNewChild(hi, NULL, BAD_CAST "P", BAD_CAST BN_bn2hex(rsa->p));
+>       xmlNewChild(hi, NULL, BAD_CAST "Q", BAD_CAST BN_bn2hex(rsa->q));
+298c227
+<                   BAD_CAST BN_bn2hex(rsa_dmp1));
+---
+>                   BAD_CAST BN_bn2hex(rsa->dmp1));
+300c229
+<                   BAD_CAST BN_bn2hex(rsa_dmq1));
+---
+>                   BAD_CAST BN_bn2hex(rsa->dmq1));
+302c231
+<                   BAD_CAST BN_bn2hex(rsa_iqmp));
+---
+>                   BAD_CAST BN_bn2hex(rsa->iqmp));
