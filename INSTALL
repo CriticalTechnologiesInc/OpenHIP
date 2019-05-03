@@ -7,7 +7,7 @@ cd cti-openhip-v1/
 sudo ./install.sh
 ```
 
-To see how this package was created see [this document](docs/static-building.html) for details.
+To see how this packages contents was created see [this document](docs/static-building.html) for details.
 
 ## Setting Up & Configuring
 

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Critical Technologies Inc. (CTI)
+# Adam Wiethuechter <adam.wiethuechter@critical.com>
+# 2019-05-02
+
 sudo cp usr-local-sbin/* /usr/local/sbin/
 cd /usr/local/sbin/
 
