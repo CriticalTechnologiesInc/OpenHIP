@@ -15,7 +15,7 @@ commit=$(git log --oneline -1)
 # create the package manually
 mkdir cti-openhip_$(date +%Y%m%d)_${commit:0:7}
 echo $(date +%Y%m%d)_${commit:0:7} > cti-openhip_$(date +%Y%m%d)_${commit:0:7}/VERSION
-cp -r usr-local-sbin/ docs/ install.sh cti-openhip_$(date +%Y%m%d)_${commit:0:7}
+cp -r usr-local-sbin/ docs/ install.sh INSTALL cti-openhip_$(date +%Y%m%d)_${commit:0:7}
 
 # run dos2unix to clean up anything nasty
 find cti-openhip_$(date +%Y%m%d)_${commit:0:7} -type f -print0 | xargs -0 dos2unix
