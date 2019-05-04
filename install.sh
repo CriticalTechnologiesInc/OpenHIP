@@ -7,7 +7,7 @@
 sudo cp usr-local-sbin/* /usr/local/sbin/
 cd /usr/local/sbin/
 
-if [[ $1 -eq "-s" ]]
+if [[ $1 == "-s" ]]
 then
 	sudo ./hitgen
 	sudo ./hitgen -conf
