@@ -2,8 +2,8 @@
 
 Move the CTI supplied OpenHIP package to your host system, unzip it and run the installer.
 ```
-unzip cti-openhip-v1.zip
-cd cti-openhip-v1/
+unzip cti-openhip_*.zip
+cd cti-openhip_*/
 sudo ./install.sh
 ```
 
@@ -63,13 +63,13 @@ From every '.pub.xml' that isn't yours add in the host information to your 'know
 
 Please see the section titled "Using HIP DNS Utilities" below for details on how to create your DNS entries.
 
-For the current version of this package HIP only works with DNS and not including the RVS extension to the RR. To avoid issues run [the following section](#hip-rr-entry) only and place the output (in the file '/usr/local/sbin/my_hi2dns') into your TinyDNS instance file (/etc/tinydns/root/data) and then rebuild for TinyDNS (sudo make). Reboot the DNS server for changes to take effect. 
+For the current version of this package HIP only works with DNS and not including the RVS extension to the RR. To avoid issues run [the following section](#hip-rr-entry) only and place the output (in the file '/usr/local/sbin/my_hi2dns') into your TinyDNS instance file (/etc/tinydns/root/data) and then rebuild for TinyDNS (sudo make). Reboot the DNS server for changes to take effect.
 
 If you wish to play with the RVS side of things [run this section](#hip-rr-rvs-entry) and instead use '/usr/local/sbin/my_hi2dns_rvs' file. Note that all hosts except the RVS server itself must do this. The RVS server itself will use the method above instead.
 
 If you run HIP using the '-a' flag then no known host file is needed and HIP will dyanamically learn of other hosts using DNS.
 
-#### HIP with RVS Support 
+#### HIP with RVS Support
 
 NOTE: If you run an HIP RVS all clients must add the following line to their 'known_host_identities.xml':
 ```
@@ -127,19 +127,19 @@ The CTI HIP DNS utilites will create a HIP RR + RVS entry for TinyDNS.
 
 ### HIP RR + RVS Entry
 ```
-sudo ./hip-dns.sh -a /path/to/my/host/identities/file.xml rvs.server.fqdn
+sudo ./hipdns -a /path/to/my/host/identities/file.xml rvs.server.fqdn
 ```
 
 Do this if you have an RVS Server running and you with to use DNS.
 
 ### HIP RR Entry
 ```
-sudo ./hip-dns.sh -d /path/to/my/host/identities/file.xml
+sudo ./hipdns -d /path/to/my/host/identities/file.xml
 ```
 
 Do this if you wish to use DNS and don't have an RVS Server. This method is preferred as adding in RVS produces undesirable behavior at this time.
 
 ### RVS Entry
 ```
-./hip-dns.sh -r rvs.server.fqdn
+./hipdns -r rvs.server.fqdn
 ```
