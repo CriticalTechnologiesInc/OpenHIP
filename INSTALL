@@ -4,7 +4,7 @@ Move the CTI supplied OpenHIP package to your host system, unzip it and run the 
 ```
 unzip cti-openhip_*.zip
 cd cti-openhip_*/
-sudo ./install.sh
+sudo ./install.sh [-s <HOST_FQDN>]
 ```
 
 To see how this packages contents was created see [this document](docs/static-building.html) for details.
@@ -45,6 +45,8 @@ For HIP there are a few settings we normally set to get HIP up and running in '/
 - Change disable_dns_threads to "no"
 - Change save_known_identities to "yes"
 - Add dns_server tags with the desired DNS server (IP address) that will respond to HIP based queries
+
+It has been noted by Bill Chappell of CTI that if HIP is started without having the "save_known_identities" set to "yes" initially the HIP process fails to function correctly. By starting HIP up with "save_known_identities" active, allowing it to create the file 'known_host_identities.xml', shutting down the HIP process and then moving the file out of the way HIP seems happier.
 
 #### Host to Host (No HIP Enabled DNS)
 
